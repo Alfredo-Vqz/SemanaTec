@@ -13,3 +13,7 @@ def create_reminder(db: Session, reminder: reminderschema.Reminder):
 def find_email(db: Session, email: str):
     reminders = db.query(remindermodel.Reminder).filter(remindermodel.Reminder.email == email).all()
     return reminders
+
+def list_reminder(db:Session):
+    users= db.query(remindermodel.Reminder).all()
+    return users

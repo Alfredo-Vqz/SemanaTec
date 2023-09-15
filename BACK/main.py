@@ -56,6 +56,11 @@ async def list_users(db: Session = Depends(get_db)):
     users=userrepository.list_users(db)
     return users
 
+@app.get("/reminder/list",response_model=list[Reminder])
+async def list_reminder(db: Session = Depends(get_db)):
+    reminders=reminderrepository.list_reminder(db)
+    return reminders
+
 @app.get("/user/find/{id}",response_model=User)
 async def find_by_id(db:Session=Depends(get_db),id:int=0):
     print(id)
