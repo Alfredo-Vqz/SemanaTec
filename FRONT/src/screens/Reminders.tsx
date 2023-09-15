@@ -18,6 +18,7 @@ function Reminders(){
     const [saving,setSaving]=useState(false);
     const [loading,setLoading]=useState(true);
     const [userReminders,setUserReminders]=useState([]);
+    const [isOpen, setIsOpen] = useState(false);
     // const [users,setUsers]=useState([]);
     const [reminderFormData, setReminderFormData] = useState({
         title: "",
@@ -64,14 +65,14 @@ function Reminders(){
         })
     };
 
-    const getUser = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        axios.get("http://localhost:8000/user/list").then((response)=>{
-            if (!response.data[0]) {
-            }
-            setUser(response.data);
-        });
-    }
+    // const getUser = (e: React.FormEvent<HTMLFormElement>) => {
+    //     e.preventDefault();
+    //     axios.get("http://localhost:8000/user/list").then((response)=>{
+    //         if (!response.data[0]) {
+    //         }
+    //         setUser(response.data);
+    //     });
+    // }
     // function listUsers(){
     //     axios.get("http://localhost:8000/user/list").then((response)=>{
     //         setUsers(response.data)
@@ -83,51 +84,71 @@ function Reminders(){
     return <>
         <section className="user">
             <div className="container">
-                <form onSubmit={getUser} className={(name && email) ? ('content') : ('content middle')}>
+                <form onSubmit={createUser} className={(name && email) ? ('content') : ('content middle')}>
                     <h1>Bienvenido</h1>
                     <p>¿Cuál es tu nombre?</p>
-                    <TextField id="outlined-basic" label="Name" type="text" variant="outlined" name="name" value={name} onChange={(e)=>{setName(e.target.value)}} autoComplete="off" />
-                    <TextField id="outlined-basic" label="Email" type="email" variant="outlined" name="email" value={email} onChange={(e)=>{setEmail(e.target.value)}} autoComplete="off" />
-                    <LoadingButton loading={saving} variant="contained" type='submit'>Save</LoadingButton>
+                    <TextField id="outlined-basic" label="Name" type="text" variant="outlined" name="name" value={name} onChange={(e)=>{setName(e.target.value)}} autoComplete="nofill" />
+                    <TextField id="outlined-basic" label="Email" type="email" variant="outlined" name="email" value={email} onChange={(e)=>{setEmail(e.target.value)}} autoComplete="nofill" />
+                    <LoadingButton loading={saving} variant="contained" type='submit'>Guardar</LoadingButton>
                 </form>
             </div>
         </section>
         {(name && email) && <>
-            <section className='create'>
-                <div className="container">
-                    <div className="content">
-                        <h1>Create reminder</h1>
-                        <hr />
-                        <form action="" onSubmit={createReminder}>
-                            <TextField id="outlined-basic" label="Title" variant="outlined" name="title" value={reminderFormData.title} onChange={handleInput} />
-                            <TextField id="outlined-multiline-static" label="Description" multiline name="description" rows={4} variant="outlined" value={reminderFormData.description} onChange={handleInput} />
-                            <TextField id="datetime-local" label="Date and Time" type="datetime-local" name="datetime" variant="outlined" value={reminderFormData.datetime} onChange={handleInput} InputLabelProps={{ shrink: true, }} />
-                            <LoadingButton loading={saving} variant="contained" type="submit">Save</LoadingButton>
-                        </form>
+            {isOpen && <>
+                <div className='darken' onClick={()=>setIsOpen(false)}></div>
+                <section className='create'>
+                    <div className="container">
+                        <div className="content py-3">
+                            <button className='close-btn' type='button' onClick={()=>setIsOpen(false)}>x</button>
+                            <h1>Crear recordatorio</h1>
+                            <hr />
+                            <form action="" onSubmit={createReminder}>
+                                <div className='row'>
+                                    <div className='col-6'>
+                                        <TextField id="outlined-basic" label="Title" variant="outlined" name="title" value={reminderFormData.title} onChange={handleInput} className='form-control' />
+                                    </div>
+                                    <div className='col-6'>
+                                        <TextField id="outlined-multiline-static" label="Description" multiline name="description" rows={4} variant="outlined" value={reminderFormData.description} onChange={handleInput} className='form-control' />
+                                    </div>
+                                    <div className='col-6'>
+                                        <TextField id="datetime-local" label="Date and Time" type="datetime-local" name="datetime" variant="outlined" value={reminderFormData.datetime} onChange={handleInput} InputLabelProps={{ shrink: true, }} className='form-control' />
+                                    </div>
+                                    <div className='col-12 pt-4'>
+                                        <LoadingButton loading={saving} variant="contained" type="submit">Save</LoadingButton>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                </div>
-            </section>
-            <section className="reminders">
+                </section>
+            </>}
+            <section className="py-5">
                 <div className='container'>
-                    <div className='content'></div>
-                </div>
-                <div className="view">
-                    <h1>Reminders</h1>
-                    <hr />
-                    <div className="reminders">
-                        <div className="container">
-                            <div className="content">
-                                <div className="reminder">
-                                    <h3>Recordatorio 1</h3>
-                                </div>
-                                <div className="reminder">
-                                    <h3>Recordatorio 1</h3>
-                                </div>
-                                <div className="reminder">
-                                    <h3>Recordatorio 1</h3>
-                                </div>
-                                <div className="reminder">
-                                    <h3>Recordatorio 1</h3>
+                    <div className='content'>
+                        <h1>Reminders</h1>
+                        <LoadingButton variant="contained" type='button' onClick={()=>setIsOpen(true)}>Crear nuevo recordatorio</LoadingButton>
+                        <hr />
+                        <div className="reminders">
+                            <div className="container">
+                                <div className="content">
+                                    <div className="reminder">
+                                        <h3>Recordatorio 1</h3>
+                                        <p className='description'>
+                                            lorem isas sdfsdasva
+                                        </p>
+                                        <p className='datetime'>
+                                            2023-10-01
+                                        </p>
+                                    </div>
+                                    <div className="reminder">
+                                        <h3>Recordatorio 1</h3>
+                                    </div>
+                                    <div className="reminder">
+                                        <h3>Recordatorio 1</h3>
+                                    </div>
+                                    <div className="reminder">
+                                        <h3>Recordatorio 1</h3>
+                                    </div>
                                 </div>
                             </div>
                         </div>
