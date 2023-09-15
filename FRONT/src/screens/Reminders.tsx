@@ -45,7 +45,7 @@ function Reminders(){
             datetime:reminderFormData.datetime
         }).then((response)=>{
             setSaving(false);
-            getReminders();
+            getRemindersByEmail();
             setIsOpen(false);
         })
     }
