@@ -12,7 +12,7 @@ class User(Base):
 class Reminder(Base):
     __tablemame__ = "reminder"
 
-    idreminder = Column(Integer, primery_key=True, index=True)
+    idreminder = Column(Integer, primary_key=True, index=True)
     email = Column(String)
     title = Column(String)
     description = Column(String)
