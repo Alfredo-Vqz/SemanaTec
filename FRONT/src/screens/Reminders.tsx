@@ -62,7 +62,7 @@ function Reminders(){
 
     function getReminders() {
         setLoading(true);
-        axios.get("http:localhost:8000/reminder/find").then((res)=>{
+        axios.get("http:localhost:8000/reminder/find" + email).then((res)=>{
             setUserReminders(res.data);
             setLoading(false);
         })
@@ -83,7 +83,9 @@ function Reminders(){
     // };
     useEffect(()=>{
         try {
-            getReminders();
+            if (email) {
+                getReminders();
+            }
         } catch (error) {
             console.log(error);
         }
