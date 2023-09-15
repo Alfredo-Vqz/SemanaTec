@@ -23,7 +23,19 @@ function Reminders(){
         }));
     };
 
-    function save(){
+    const createReminder =()=>{
+        setSaving(true);
+        axios.post("http://localhost:8000/reminder/create",{
+            email:email,
+            title:reminderFormData.title,
+            description:reminderFormData.description,
+            datetime:reminderFormData.datetime
+        }).then((response)=>{
+            setSaving(false);
+        })
+    }
+
+    function createUser(){
         setSaving(true);
         axios.post("http://localhost:8000/user/create",{
             name:name,
@@ -48,7 +60,7 @@ function Reminders(){
                     <p>¿Cuál es tu nombre?</p>
                     <TextField id="outlined-basic" label="Name" type="text" variant="outlined" name="name" value={name} onChange={(e)=>{setName(e.target.value)}} autoComplete="nofill" />
                     <TextField id="outlined-basic" label="Email" type="email" variant="outlined" name="email" value={email} onChange={(e)=>{setEmail(e.target.value)}} autoComplete="nofill" />
-                    <LoadingButton loading={saving} variant="contained" onClick={save}>Save</LoadingButton>
+                    <LoadingButton loading={saving} variant="contained" onClick={createUser}>Save</LoadingButton>
                 </div>
             </div>
         </section>
@@ -61,7 +73,7 @@ function Reminders(){
                         <TextField id="outlined-basic" label="Title" variant="outlined" name="title" value={reminderFormData.title} onChange={handleInput} />
                         <TextField id="outlined-multiline-static" label="Description" multiline name="description" rows={4} variant="outlined" value={reminderFormData.description} onChange={handleInput} />
                         <TextField id="datetime-local" label="Date and Time" type="datetime-local" name="datetime" variant="outlined" value={reminderFormData.datetime} onChange={handleInput} InputLabelProps={{ shrink: true, }} />
-                        <LoadingButton loading={saving} variant="contained" onClick={save}>Save</LoadingButton>
+                        <LoadingButton loading={saving} variant="contained" onClick={createReminder}>Save</LoadingButton>
                     </form>
                 </div>
                 <div className="view">

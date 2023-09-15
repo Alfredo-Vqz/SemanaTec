@@ -1,5 +1,5 @@
 from fastapi import FastAPI,Depends
-from schema.userschema import User
+from schema.userschema import User, Reminder
 from repository import userrepository
 from database import SessionLocal, engine
 from sqlalchemy.orm import Session
@@ -43,6 +43,12 @@ async def hello_name(user:User):
 async def create_user(user:User, db: Session = Depends(get_db)):
     user=userrepository.create_user(db,user)
     return user
+
+@app.post("/reminder/create", response_model=Reminder)
+async def create_reminder(reminder:Reminder, db: Session = Depends(get_db)):
+    reminder=userrepository.create_reminder(db,reminder)
+    return reminder
+
 
 @app.get("/user/list",response_model=list[User])
 async def list_users(db: Session = Depends(get_db)):

@@ -7,7 +7,14 @@ class User(Base):
 
     iduser = Column(Integer, primary_key=True, index=True)
     name = Column(String, nullable = False)
-    descripcion=Column(String)
     email = Column(String)
-    fecha_hora = Column(DateTime, default=func.now(), nullable=False)
 
+class Reminder(Base):
+    __tablemame__ = "reminder"
+
+    idreminder = Column(Integer, primery_key=True, index=True)
+    email = Column(String)
+    title = Column(String)
+    description = Column(String)
+    datetime = Column(String)
+    

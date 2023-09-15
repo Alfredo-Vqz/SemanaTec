@@ -1,4 +1,4 @@
-import { TextField } from "@mui/material";
+import { TextField} from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import LoadingButton from '@mui/lab/LoadingButton';
@@ -44,6 +44,7 @@ function CreateUserForm(){
                 const {value}=event.target
                 setEmail(value)
             }} />
+            <TextField id="datetime-local" label="Date and Time" type="datetime-local" name="datetime" variant="outlined" value={reminderFormData.datetime} onChange={handleInput} InputLabelProps={{ shrink: true, }} />
             <LoadingButton loading={saving} variant="contained" onClick={save}>Save</LoadingButton>
             </div>
             <div>

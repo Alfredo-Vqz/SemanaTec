@@ -4,6 +4,10 @@ from datetime  import datetime
 
 class User(BaseModel):
     name: str
-    descripcion: str
     email: str
-    fecha_hora: datetime
+
+class Reminder(BaseModel):
+    email: str
+    title: str
+    description: str
+    datetime: str
