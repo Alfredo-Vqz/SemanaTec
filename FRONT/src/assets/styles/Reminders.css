@@ -1,11 +1,18 @@
 .user {  }
 .user .container {  }
-.user .container .content { position: relative; margin-top: 0%; transition: 0.5s; }
+.user .container .content { position: relative; margin-top: 1%; transition: 0.5s; border-radius: .5rem; background-color: lightgray; box-shadow: .25rem .25rem .5rem 0 rgba(0, 0, 0, .2); padding: 1rem; }
 .user .container .content.middle { margin-top: 15%; }
+
+
+.create { position: fixed; background-color: aliceblue; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 3; box-shadow: .25rem .25rem .5rem 0 rgba(0, 0, 0, .2); border-radius: 0.5rem; }
+.darken { position: fixed; background-color: rgba(0, 0, 0, .5); top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100vh; }
+.close-btn { background-color: transparent; border: 0; float: right; color: red; font-weight: 800; }
+
+.reminders {  }
+.reminders .container {  }
+.reminders .container .content { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start; align-content: center; align-items: stretch; }
+.reminders .reminder { flex: 1 0 auto; width: 100%; max-width: 33%; border: 1px solid red; }
 
 
 
 .reminders {  }
-.reminders .container {  }
-.reminders .container .content { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start; align-content: center; align-items: center; }
-.reminders .reminder { flex: 1 0 auto; width: 100%; max-width: 33%; border: 1px solid red; }
