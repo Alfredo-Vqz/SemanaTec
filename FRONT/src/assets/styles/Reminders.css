@@ -1,0 +1,11 @@
+.user {  }
+.user .container {  }
+.user .container .content { position: relative; margin-top: 0%; transition: 0.5s; }
+.user .container .content.middle { margin-top: 15%; }
+
+
+
+.reminders {  }
+.reminders .container {  }
+.reminders .container .content { display: flex; }
+.reminders .reminder { flex: 1 0 auto; width: 100%; max-width: 33%; border: 1px solid red; }

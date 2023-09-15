@@ -1,9 +1,15 @@
+import 'bootstrap/dist/css/bootstrap.min.css'
 import { TextField } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import LoadingButton from '@mui/lab/LoadingButton';
+import "../assets/styles/Reminders.css"
 
 function Reminders(){
+
+    useEffect(() => {
+        require("bootstrap/dist/js/bootstrap.bundle.min.js");
+    }, []);
 
     const [name,setName]=useState("");
     const [email,setEmail]=useState("");
@@ -55,55 +61,47 @@ function Reminders(){
     return <>
         <section className="user">
             <div className="container">
-                <div className="content">
+                <div className={(name && email) ? ('content') : ('content middle')}>
                     <h1>Bienvenido</h1>
                     <p>¿Cuál es tu nombre?</p>
-                    <TextField id="outlined-basic" label="Name" type="text" variant="outlined" name="name" value={name} onChange={(e)=>{setName(e.target.value)}} autoComplete="nofill" />
-                    <TextField id="outlined-basic" label="Email" type="email" variant="outlined" name="email" value={email} onChange={(e)=>{setEmail(e.target.value)}} autoComplete="nofill" />
+                    <TextField id="outlined-basic" label="Name" type="text" variant="outlined" name="name" value={name} onChange={(e)=>{setName(e.target.value)}} autoComplete="off" />
+                    <TextField id="outlined-basic" label="Email" type="email" variant="outlined" name="email" value={email} onChange={(e)=>{setEmail(e.target.value)}} autoComplete="off" />
                     <LoadingButton loading={saving} variant="contained" onClick={createUser}>Save</LoadingButton>
                 </div>
             </div>
         </section>
         {(name && email) && <>
+            <section className='create'>
+                <div className="container">
+                    <div className="content">
+                        <h1>Create reminder</h1>
+                        <hr />
+                        <form action="" onSubmit={()=>{}}>
+                            <TextField id="outlined-basic" label="Title" variant="outlined" name="title" value={reminderFormData.title} onChange={handleInput} />
+                            <TextField id="outlined-multiline-static" label="Description" multiline name="description" rows={4} variant="outlined" value={reminderFormData.description} onChange={handleInput} />
+                            <TextField id="datetime-local" label="Date and Time" type="datetime-local" name="datetime" variant="outlined" value={reminderFormData.datetime} onChange={handleInput} InputLabelProps={{ shrink: true, }} />
+                            <LoadingButton loading={saving} variant="contained" type="submit">Save</LoadingButton>
+                        </form>
+                    </div>
+                </div>
+            </section>
             <section className="reminders">
-                <div className="create">
-                    <h1>Create reminder</h1>
-                    <hr />
-                    <form action="">
-                        <TextField id="outlined-basic" label="Title" variant="outlined" name="title" value={reminderFormData.title} onChange={handleInput} />
-                        <TextField id="outlined-multiline-static" label="Description" multiline name="description" rows={4} variant="outlined" value={reminderFormData.description} onChange={handleInput} />
-                        <TextField id="datetime-local" label="Date and Time" type="datetime-local" name="datetime" variant="outlined" value={reminderFormData.datetime} onChange={handleInput} InputLabelProps={{ shrink: true, }} />
-                        <LoadingButton loading={saving} variant="contained" onClick={createReminder}>Save</LoadingButton>
-                    </form>
+                <div className='container'>
+                    <div className='content'></div>
                 </div>
                 <div className="view">
                     <h1>Reminders</h1>
                     <hr />
-                    <div></div>
+                    <div className="reminders">
+                        <div className="container">
+                            <div className="content">
+                                <div className="reminder">
+                                    <h3>Recordatorio 1</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                {/* <div>
-                    <TextField id="outlined-basic" label="Name" variant="outlined" value={name} onChange={(event)=>{
-                        const {value}=event.target
-                        setName(value)
-                    }} />
-                    <TextField id="outlined-basic" label="Last Name" variant="outlined" value={lastName} onChange={(event)=>{
-                        const {value}=event.target
-                        setLastName(value)
-                    }}/>
-                    <TextField id="outlined-basic" label="Email" variant="outlined" value={email} onChange={(event)=>{
-                        const {value}=event.target
-                        setEmail(value)
-                    }} />
-                    <LoadingButton loading={saving} variant="contained" onClick={save}>Save</LoadingButton>
-                </div> */}
-                {/* <div>
-                    {users.map((user:any)=>{
-                        return <>
-                            <p>{user.name} {user.last_name} {user.email}</p>
-                        </>
-                    })}
-                </div> */}
-
             </section>
         </>}
     </>;
