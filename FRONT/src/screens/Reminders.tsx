@@ -62,7 +62,7 @@ function Reminders(){
 
     function getReminders() {
         setLoading(true);
-        axios.get("http:localhost:8000/reminder/find" + email).then((res)=>{
+        axios.get("http://localhost:8000/reminder/list").then((res)=>{
             console.log(res.data);
             setUserReminders(res.data);
             setLoading(false);
