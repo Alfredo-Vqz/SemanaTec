@@ -70,6 +70,14 @@ function Reminders(){
         })
     };
 
+    function getRemindersByEmail() {
+        setLoading(true);
+        axios.get("http://localhost:8000/reminder/find"+ email).then((res)=>{
+            console.log(res.data);
+            setUserReminders(res.data);
+            setLoading(false);
+        })
+    };    
     // const getUser = (e: React.FormEvent<HTMLFormElement>) => {
     //     e.preventDefault();
     //     axios.get("http://localhost:8000/user/list").then((response)=>{
