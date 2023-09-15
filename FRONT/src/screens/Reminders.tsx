@@ -153,6 +153,9 @@ function Reminders(){
                                     <p className='datetime'>
                                         {reminder.datetime}
                                     </p>
+                                    <p className='owner'>
+                                        {reminder.email}
+                                    </p>
                                     </div>
                                 ))}
                                 </div>
