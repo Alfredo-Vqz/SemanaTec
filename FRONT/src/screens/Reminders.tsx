@@ -46,7 +46,8 @@ function Reminders(){
         })
     }
 
-    function createUser(e: React.ChangeEvent<HTMLInputElement>){
+    const createUser = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
         setSaving(true);
         axios.post("http://localhost:8000/user/create",{
             name:name,
@@ -80,13 +81,13 @@ function Reminders(){
     return <>
         <section className="user">
             <div className="container">
-                <div className={(name && email) ? ('content') : ('content middle')}>
+                <form onSubmit={createUser} className={(name && email) ? ('content') : ('content middle')}>
                     <h1>Bienvenido</h1>
                     <p>¿Cuál es tu nombre?</p>
                     <TextField id="outlined-basic" label="Name" type="text" variant="outlined" name="name" value={name} onChange={(e)=>{setName(e.target.value)}} autoComplete="off" />
                     <TextField id="outlined-basic" label="Email" type="email" variant="outlined" name="email" value={email} onChange={(e)=>{setEmail(e.target.value)}} autoComplete="off" />
-                    <LoadingButton loading={saving} variant="contained" onClick={createUser}>Save</LoadingButton>
-                </div>
+                    <LoadingButton loading={saving} variant="contained" type='submit'>Save</LoadingButton>
+                </form>
             </div>
         </section>
         {(name && email) && <>
