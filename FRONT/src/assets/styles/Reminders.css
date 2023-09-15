@@ -14,6 +14,9 @@ body {
     text-align: center;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
   }
+
+  .user .container .content { position: relative; margin-top: 1%; transition: 0.5s; }
+    .user .container .content.middle { margin-top: 15%; }
   
   /* Estilos para los botones en el formulario de registro */
   .user .container .content button {
