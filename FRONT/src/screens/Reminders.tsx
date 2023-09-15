@@ -101,7 +101,7 @@ function Reminders(){
                     <TextField id="outlined-basic" label="Email" type="email" variant="outlined" name="email" value={email} onChange={(e)=>{setEmail(e.target.value)}} autoComplete="nofill" />
                     <LoadingButton loading={saving} variant="contained" type='submit'>Guardar</LoadingButton>
                 </form>
-                <LoadingButton loading={saving} variant="contained" type='button' onClick={()=>getReminders}>Ver</LoadingButton>
+                <LoadingButton loading={saving} variant="contained" type='button' onClick={()=>getReminders()}>Ver</LoadingButton>
             </div>
         </section>
         {(name && email) && <>
