@@ -45,6 +45,7 @@ function Reminders(){
             datetime:reminderFormData.datetime
         }).then((response)=>{
             setSaving(false);
+            getReminders();
             setIsOpen(false);
         })
     }
@@ -62,7 +63,7 @@ function Reminders(){
 
     function getReminders() {
         setLoading(true);
-        axios.get("http://localhost:8000/reminder/list").then((res)=>{
+        axios.get("http:localhost:8000/reminder/find" + email).then((res)=>{
             console.log(res.data);
             setUserReminders(res.data);
             setLoading(false);
