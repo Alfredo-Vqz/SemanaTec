@@ -18,9 +18,4 @@ def find_by_id(db:Session, id:int):
     user=db.query(usermodel.User).filter(usermodel.User.id==id).first()
     return user
 
-def create_reminder(db: Session, reminder: userschema.Reminder):
-    db_reminder = usermodel.Reminder(email=reminder.email,title=reminder.title,description=reminder.description, datetime=reminder.datetime)
-    db.add(db_reminder)
-    db.commit()
-    db.refresh(db_reminder)
-    return db_reminder
+

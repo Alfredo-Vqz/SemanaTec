@@ -1,6 +1,7 @@
 from fastapi import FastAPI,Depends
-from schema.userschema import User, Reminder
-from repository import userrepository
+from schema.userschema import User
+from schema.reminderschema import Reminder
+from repository import userrepository, reminderrepository
 from database import SessionLocal, engine
 from sqlalchemy.orm import Session
 from fastapi.middleware.cors import CORSMiddleware
@@ -30,14 +31,14 @@ async def hello_world():
     return {"message":"Hello World"}
 
 
-@app.get("/hello/{name}")
-async def hello_name(name:str):
-    return {"message":f"Hello {name}"}
+# @app.get("/hello/{name}")
+# async def hello_name(name:str):
+#     return {"message":f"Hello {name}"}
 
 
-@app.post("/hello-post")
-async def hello_name(user:User):
-    return {"message":f"Hello {user.name}"}
+# @app.post("/hello-post")
+# async def hello_name(user:User):
+#     return {"message":f"Hello {user.name}"}
 
 @app.post("/user/create",response_model=User)
 async def create_user(user:User, db: Session = Depends(get_db)):
@@ -46,7 +47,7 @@ async def create_user(user:User, db: Session = Depends(get_db)):
 
 @app.post("/reminder/create", response_model=Reminder)
 async def create_reminder(reminder:Reminder, db: Session = Depends(get_db)):
-    reminder=userrepository.create_reminder(db,reminder)
+    reminder=reminderrepository.create_reminder(db,reminder)
     return reminder
 
 

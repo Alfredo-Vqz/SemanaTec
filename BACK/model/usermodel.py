@@ -9,12 +9,5 @@ class User(Base):
     name = Column(String, nullable = False)
     email = Column(String)
 
-class Reminder(Base):
-    __tablemame__ = "reminder"
 
-    idreminder = Column(Integer, primary_key=True, index=True)
-    email = Column(String)
-    title = Column(String)
-    description = Column(String)
-    datetime = Column(String)
     
