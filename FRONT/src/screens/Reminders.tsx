@@ -4,6 +4,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import LoadingButton from '@mui/lab/LoadingButton';
 import "../assets/styles/Reminders.css"
+import { Reminder } from '../models/Reminder';
 
 function Reminders(){
 
@@ -17,7 +18,7 @@ function Reminders(){
     const [email,setEmail]=useState("");
     const [saving,setSaving]=useState(false);
     const [loading,setLoading]=useState(true);
-    const [userReminders,setUserReminders]=useState([]);
+    const [userReminders,setUserReminders]=useState<Reminder[]|null>();
     const [isOpen, setIsOpen] = useState(false);
     // const [users,setUsers]=useState([]);
     const [reminderFormData, setReminderFormData] = useState({
@@ -44,6 +45,7 @@ function Reminders(){
             datetime:reminderFormData.datetime
         }).then((response)=>{
             setSaving(false);
+            setIsOpen(false);
         })
     }
 
@@ -60,8 +62,9 @@ function Reminders(){
 
     function getReminders() {
         setLoading(true);
-        axios.get("http:localhost:8000/reminders/get").then((res)=>{
+        axios.get("http:localhost:8000/reminders/find").then((res)=>{
             setUserReminders(res.data);
+            setLoading(false);
         })
     };
 
@@ -125,30 +128,23 @@ function Reminders(){
             <section className="py-5">
                 <div className='container'>
                     <div className='content'>
-                        <h1>Reminders</h1>
+                        <h1>Recordatorios</h1>
                         <LoadingButton variant="contained" type='button' onClick={()=>setIsOpen(true)}>Crear nuevo recordatorio</LoadingButton>
                         <hr />
                         <div className="reminders">
                             <div className="container">
                                 <div className="content">
-                                    <div className="reminder">
-                                        <h3>Recordatorio 1</h3>
-                                        <p className='description'>
-                                            lorem isas sdfsdasva
-                                        </p>
-                                        <p className='datetime'>
-                                            2023-10-01
-                                        </p>
+                                {userReminders?.map((reminder, index) => (
+                                    <div className="reminder" key={index}>
+                                    <h3>{reminder.title}</h3>
+                                    <p className='description'>
+                                        {reminder.description}
+                                    </p>
+                                    <p className='datetime'>
+                                        {reminder.datetime}
+                                    </p>
                                     </div>
-                                    <div className="reminder">
-                                        <h3>Recordatorio 1</h3>
-                                    </div>
-                                    <div className="reminder">
-                                        <h3>Recordatorio 1</h3>
-                                    </div>
-                                    <div className="reminder">
-                                        <h3>Recordatorio 1</h3>
-                                    </div>
+                                ))}
                                 </div>
                             </div>
                         </div>
