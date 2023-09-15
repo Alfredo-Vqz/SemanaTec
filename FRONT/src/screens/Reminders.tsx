@@ -72,7 +72,7 @@ function Reminders(){
 
     function getRemindersByEmail() {
         setLoading(true);
-        axios.get("http://localhost:8000/reminder/find"+ email).then((res)=>{
+        axios.get("http://localhost:8000/reminder/find/"+ email).then((res)=>{
             console.log(res.data);
             setUserReminders(res.data);
             setLoading(false);
@@ -107,10 +107,10 @@ function Reminders(){
                     <h1>Bienvenido</h1>
                     <p>¿Cuál es tu nombre?</p>
                     <TextField id="outlined-basic" label="Name" type="text" variant="outlined" name="name" value={name} onChange={(e)=>{setName(e.target.value)}} autoComplete="nofill" />
-                    <TextField id="outlined-basic" label="Email" type="email" variant="outlined" name="email" value={email} onChange={(e)=>{setEmail(e.target.value)}} autoComplete="nofill" />
+                    <TextField id="outlined-basic" label="Email" type="text" variant="outlined" name="email" value={email} onChange={(e)=>{setEmail(e.target.value)}} autoComplete="nofill" />
                     <br />
                     <LoadingButton loading={saving} variant="contained" type='submit'>Registrarse</LoadingButton>
-                    <LoadingButton loading={saving} variant="contained" type='button' onClick={()=>getReminders()}>Iniciar sesión</LoadingButton>
+                    <LoadingButton loading={saving} variant="contained" type='button' onClick={()=>getRemindersByEmail()}>Iniciar sesión</LoadingButton>
                 </form>
             </div>
         </section>

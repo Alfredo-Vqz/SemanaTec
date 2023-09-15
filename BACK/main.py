@@ -70,8 +70,8 @@ async def find_by_id(db:Session=Depends(get_db),id:int=0):
     return user
 
 
-@app.get("/reminder/find/{email}",response_model=Reminder)
+@app.get("/reminder/find/{email}",response_model=list[Reminder])
 async def find_email(db:Session=Depends(get_db),email:str=""):
-    email=reminderrepository.find_email(db,email)
+    reminder=reminderrepository.find_email(db,email)
     print(email)
-    return email
+    return reminder
