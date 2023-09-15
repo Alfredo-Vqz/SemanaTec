@@ -81,9 +81,9 @@ function Reminders(){
     //         setUsers(response.data)
     //     })
     // };
-    // useEffect(()=>{
-    //     listUsers();
-    // },[]);
+    useEffect(()=>{
+        getReminders();
+    },[]);
     return <>
         <section className="user">
             <div className="container">
