@@ -11,8 +11,15 @@ import {
   Link,
 } from "react-router-dom";
 import CreateUserForm from './screens/CreateUserForm';
+import Reminders from './screens/Reminders';
 
 const router = createBrowserRouter([
+  {
+    path: "/",
+    element: (
+      <Pokedex></Pokedex>
+    ),
+  },
   {
     path: "/pokedex",
     element: (
@@ -23,14 +30,19 @@ const router = createBrowserRouter([
     path: "/user-form",
     element: <CreateUserForm></CreateUserForm>,
   },
+  {
+    path: "/reminders",
+    element: <Reminders/>,
+  },
 ]);
+
 function App() {
   return (
-    <div className="App">
+    <main className="App">
       <React.StrictMode>
         <RouterProvider router={router} />
       </React.StrictMode>
-    </div>
+    </main>
   );
 }
 

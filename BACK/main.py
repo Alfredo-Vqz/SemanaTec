@@ -5,7 +5,7 @@ from database import SessionLocal, engine
 from sqlalchemy.orm import Session
 from fastapi.middleware.cors import CORSMiddleware
 
-app=FastAPI()
+app = FastAPI()
 
 origins = [
     "http://localhost:3000",
@@ -18,6 +18,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 def get_db():
     db = SessionLocal()
     try:
