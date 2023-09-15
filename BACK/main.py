@@ -58,6 +58,7 @@ async def list_users(db: Session = Depends(get_db)):
 
 @app.get("/reminder/list",response_model=list[Reminder])
 async def list_reminder(db: Session = Depends(get_db)):
+    print("xxxxxxxxxxxx")
     reminders=reminderrepository.list_reminder(db)
     return reminders
 
