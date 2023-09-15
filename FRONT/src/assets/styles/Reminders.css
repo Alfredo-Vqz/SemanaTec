@@ -1,18 +1,95 @@
-.user {  }
-.user .container {  }
-.user .container .content { position: relative; margin-top: 1%; transition: 0.5s; border-radius: .5rem; background-color: lightgray; box-shadow: .25rem .25rem .5rem 0 rgba(0, 0, 0, .2); padding: 1rem; }
-.user .container .content.middle { margin-top: 15%; }
-
-
-.create { position: fixed; background-color: aliceblue; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 3; box-shadow: .25rem .25rem .5rem 0 rgba(0, 0, 0, .2); border-radius: 0.5rem; }
-.darken { position: fixed; background-color: rgba(0, 0, 0, .5); top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100vh; }
-.close-btn { background-color: transparent; border: 0; float: right; color: red; font-weight: 800; }
-
-.reminders {  }
-.reminders .container {  }
-.reminders .container .content { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start; align-content: center; align-items: stretch; }
-.reminders .reminder { flex: 1 0 auto; width: 100%; max-width: 33%; border: 1px solid red; }
-
-
-
-.reminders {  }
+/* Fondo degradado amarillo pastel */
+body {
+    background: linear-gradient(135deg, #f7dc6f, #f3e5ab);
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Estilos para el formulario de registro */
+  .user .container .content {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 0.5rem;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Estilos para los botones en el formulario de registro */
+  .user .container .content button {
+    margin-top: 1rem;
+  }
+  
+  /* Estilos para el formulario de creación de recordatorio */
+  .create .container .content {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 0.5rem;
+    padding: 2rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+  }
+  
+  .create .container .content h1 {
+    text-align: center;
+  }
+  
+  /* Estilos para la sección de recordatorios */
+  .reminders .container .content {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 0.5rem;
+    padding: 2rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+  }
+  
+  .reminders .container .content h1 {
+    text-align: center;
+    color: #333;
+  }
+  
+  .reminders .container .content hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border-color: #ccc;
+  }
+  
+  /* Estilos para los botones en la sección de recordatorios */
+  .reminders .container .content button {
+    margin-top: 1rem;
+    background-color: #f7dc6f;
+    color: #333;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .reminders .container .content button:hover {
+    background-color: #f3e5ab;
+    cursor: pointer;
+  }
+  
+  /* Estilos para los recordatorios individuales */
+  .reminder {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 1rem;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
+  }
+  
+  .reminder h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+  
+  .reminder .description {
+    margin-bottom: 1rem;
+    color: #666;
+  }
+  
+  .reminder .datetime {
+    color: #555;
+  }
+  
