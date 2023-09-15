@@ -62,3 +62,10 @@ async def find_by_id(db:Session=Depends(get_db),id:int=0):
     user=userrepository.find_by_id(db,id)
     print(user)
     return user
+
+
+@app.get("/reminder/find/{email}",response_model=Reminder)
+async def find_email(db:Session=Depends(get_db),email:str=""):
+    email=reminderrepository.find_email(db,email)
+    print(email)
+    return email
