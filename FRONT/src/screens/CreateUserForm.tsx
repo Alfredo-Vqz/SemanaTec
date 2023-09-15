@@ -6,7 +6,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 function CreateUserForm(){
 
     const [name,setName]=useState("");
-    const [lastName,setLastName]=useState("");
+    const [Descripcion,setDescripcion]=useState("");
     const [email,setEmail]=useState("");
     const [saving,setSaving]=useState(false);
     const [users,setUsers]=useState([]);
@@ -14,7 +14,7 @@ function CreateUserForm(){
         setSaving(true);
         axios.post("http://localhost:8000/user/create",{
             name:name,
-            last_name:lastName,
+            last_name:Descripcion,
             email:email
         }).then((response)=>{
             setSaving(false);
@@ -36,9 +36,9 @@ function CreateUserForm(){
                 const {value}=event.target
                 setName(value)
             }} />
-            <TextField id="outlined-basic" label="Last Name" variant="outlined" value={lastName} onChange={(event)=>{
+            <TextField id="outlined-basic" label="Last Name" variant="outlined" value={Descripcion} onChange={(event)=>{
                 const {value}=event.target
-                setLastName(value)
+                setDescripcion(value)
             }}/>
             <TextField id="outlined-basic" label="Email" variant="outlined" value={email} onChange={(event)=>{
                 const {value}=event.target
@@ -60,3 +60,4 @@ function CreateUserForm(){
 }
 
 export default CreateUserForm;
+
