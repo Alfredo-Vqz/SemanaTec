@@ -11,9 +11,13 @@ function Reminders(){
         require("bootstrap/dist/js/bootstrap.bundle.min.js");
     }, []);
 
+
+    const [user,setUser]=useState({});
     const [name,setName]=useState("");
     const [email,setEmail]=useState("");
     const [saving,setSaving]=useState(false);
+    const [loading,setLoading]=useState(true);
+    const [userReminders,setUserReminders]=useState([]);
     // const [users,setUsers]=useState([]);
     const [reminderFormData, setReminderFormData] = useState({
         title: "",
@@ -29,7 +33,8 @@ function Reminders(){
         }));
     };
 
-    const createReminder =()=>{
+    const createReminder = (e: React.ChangeEvent<HTMLInputElement>) => {
+        e.preventDefault();
         setSaving(true);
         axios.post("http://localhost:8000/reminder/create",{
             email:email,
@@ -41,7 +46,7 @@ function Reminders(){
         })
     }
 
-    function createUser(){
+    function createUser(e: React.ChangeEvent<HTMLInputElement>){
         setSaving(true);
         axios.post("http://localhost:8000/user/create",{
             name:name,
@@ -50,6 +55,20 @@ function Reminders(){
             setSaving(false);
         })
     };
+
+    function getReminders() {
+        setLoading(true);
+        axios.get("http:localhost:8000/reminders/get").then((res)=>{
+            setUserReminders(res.data);
+        })
+    };
+
+    const getUser = (e: React.ChangeEvent<HTMLInputElement>) => {
+        e.preventDefault();
+        axios.get("http://localhost:8000/user/list").then((response)=>{
+            setUser(response.data);
+        });
+    }
     // function listUsers(){
     //     axios.get("http://localhost:8000/user/list").then((response)=>{
     //         setUsers(response.data)
@@ -95,6 +114,15 @@ function Reminders(){
                     <div className="reminders">
                         <div className="container">
                             <div className="content">
+                                <div className="reminder">
+                                    <h3>Recordatorio 1</h3>
+                                </div>
+                                <div className="reminder">
+                                    <h3>Recordatorio 1</h3>
+                                </div>
+                                <div className="reminder">
+                                    <h3>Recordatorio 1</h3>
+                                </div>
                                 <div className="reminder">
                                     <h3>Recordatorio 1</h3>
                                 </div>

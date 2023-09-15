@@ -16,9 +16,7 @@ import Reminders from './screens/Reminders';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <Pokedex></Pokedex>
-    ),
+    element: <Reminders/>,
   },
   {
     path: "/pokedex",
