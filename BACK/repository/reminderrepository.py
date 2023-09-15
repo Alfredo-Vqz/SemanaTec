@@ -15,5 +15,5 @@ def find_email(db: Session, email: str):
     return reminders
 
 def list_reminder(db:Session):
-    users= db.query(remindermodel.Reminder).all()
-    return users
+    reminder= db.query(remindermodel.Reminder).all()
+    return reminder
