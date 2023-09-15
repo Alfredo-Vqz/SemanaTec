@@ -3,7 +3,7 @@ from sqlalchemy.sql import func
 from database import Base
 
 class Reminder(Base):
-    __tablemame__ = "reminder"
+    __tablename__ = "reminder"
 
     idreminder = Column(Integer, primary_key=True, index=True)
     email = Column(String)
