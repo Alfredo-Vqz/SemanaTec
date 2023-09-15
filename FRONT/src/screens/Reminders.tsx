@@ -12,7 +12,7 @@ function Reminders(){
     }, []);
 
 
-    const [user,setUser]=useState({});
+    const [user,setUser]=useState([]);
     const [name,setName]=useState("");
     const [email,setEmail]=useState("");
     const [saving,setSaving]=useState(false);
@@ -33,7 +33,7 @@ function Reminders(){
         }));
     };
 
-    const createReminder = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const createReminder = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setSaving(true);
         axios.post("http://localhost:8000/reminder/create",{
@@ -64,9 +64,11 @@ function Reminders(){
         })
     };
 
-    const getUser = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const getUser = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         axios.get("http://localhost:8000/user/list").then((response)=>{
+            if (!response.data[0]) {
+            }
             setUser(response.data);
         });
     }
@@ -81,7 +83,7 @@ function Reminders(){
     return <>
         <section className="user">
             <div className="container">
-                <form onSubmit={createUser} className={(name && email) ? ('content') : ('content middle')}>
+                <form onSubmit={getUser} className={(name && email) ? ('content') : ('content middle')}>
                     <h1>Bienvenido</h1>
                     <p>¿Cuál es tu nombre?</p>
                     <TextField id="outlined-basic" label="Name" type="text" variant="outlined" name="name" value={name} onChange={(e)=>{setName(e.target.value)}} autoComplete="off" />
@@ -96,7 +98,7 @@ function Reminders(){
                     <div className="content">
                         <h1>Create reminder</h1>
                         <hr />
-                        <form action="" onSubmit={()=>{}}>
+                        <form action="" onSubmit={createReminder}>
                             <TextField id="outlined-basic" label="Title" variant="outlined" name="title" value={reminderFormData.title} onChange={handleInput} />
                             <TextField id="outlined-multiline-static" label="Description" multiline name="description" rows={4} variant="outlined" value={reminderFormData.description} onChange={handleInput} />
                             <TextField id="datetime-local" label="Date and Time" type="datetime-local" name="datetime" variant="outlined" value={reminderFormData.datetime} onChange={handleInput} InputLabelProps={{ shrink: true, }} />
