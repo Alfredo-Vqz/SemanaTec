@@ -62,7 +62,7 @@ function Reminders(){
 
     function getReminders() {
         setLoading(true);
-        axios.get("http:localhost:8000/reminders/find").then((res)=>{
+        axios.get("http:localhost:8000/reminder/find").then((res)=>{
             setUserReminders(res.data);
             setLoading(false);
         })
@@ -82,7 +82,11 @@ function Reminders(){
     //     })
     // };
     useEffect(()=>{
-        getReminders();
+        try {
+            getReminders();
+        } catch (error) {
+            console.log(error);
+        }
     },[]);
     return <>
         <section className="user">
